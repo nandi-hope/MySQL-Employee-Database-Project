@@ -57,8 +57,7 @@ Includes practical examples of all major joins:
 ## 🧮 Example Queries
 
 ### 🔹 INNER JOIN — Employees and their Departments
-```
-sql
+```sql
 SELECT e.emp_id, e.first_name, e.last_name, d.name AS department, d.location
 FROM employees e
 INNER JOIN departments d ON e.dept_id = d.dept_id;
@@ -66,8 +65,7 @@ INNER JOIN departments d ON e.dept_id = d.dept_id;
 ✅ Output:
 
 ### 🔹 LEFT JOIN — Show every employee, even if they are not assigned to any department, along with the department details if available.
-```
-sql
+```sql
 SELECT e.emp_id, CONCAT(e.first_name, ' ', e.last_name) AS employee, d.name AS department
 FROM employees e
 LEFT JOIN departments d ON e.dept_id = d.dept_id;
@@ -83,8 +81,7 @@ RIGHT JOIN departments d ON e.dept_id = d.dept_id;
 ### 🔹 FULL OUTER JOIN — emulation (MySQL does not support FULL OUTER JOIN directly)
 ### Show every department and every employee, matching them where possible.
 -- return rows that are in left join UNION rows that are in right join but not both
-```
-sql
+```sql
 SELECT d.dept_id, d.name AS department, e.emp_id, CONCAT(e.first_name, ' ', e.last_name) AS employee
 FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id
@@ -96,8 +93,7 @@ RIGHT JOIN employees e ON d.dept_id = e.dept_id;
 ✅ Output:
 
 ### 🔹 SELF JOIN — Employees and their Managers
-```
-sql
+```sql
 SELECT e.emp_id, CONCAT(e.first_name, ' ', e.last_name) AS employee,
 m.emp_id AS manager_id, CONCAT(m.first_name, ' ', m.last_name) AS manager
 FROM employees e
@@ -106,8 +102,7 @@ LEFT JOIN employees m ON e.manager_id = m.emp_id;
 ✅ Output:
 
 ### 🔹indexes — Show employees whose salary falls within a specific range
-```
-sql
+```sql
 SELECT emp_id, first_name, last_name, salary 
 FROM employees 
 WHERE salary BETWEEN 80000 AND 120000 
