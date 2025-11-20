@@ -1,5 +1,8 @@
 # 🧮 MySQL Employee Database Project
 
+Small, production-minded MySQL sample demonstrating relational modeling (departments, employees with self-referencing manager FK), constraints, indexing, example queries and automated smoke tests. Includes screenshots of query outputs and EXPLAIN plans to show index impact.
+
+
 ## 🧠 Project Overview
 This project demonstrates advanced **MySQL concepts** using a realistic employee–department relational database.  
 It focuses on **constraints, joins, and indexes** — key components of efficient relational database design.
