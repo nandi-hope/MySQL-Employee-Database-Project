@@ -270,6 +270,10 @@ Practical use of JOINs in multi-table queries
 
 Writing clean, reusable SQL scripts for real-world data design
 
+## Why I built this project
+
+This database simulates a mid-sized company’s employee, department and salary management system. I built it to demonstrate my ability to design relational schemas, enforce referential integrity via constraints, optimize query performance with indexes, and join complex relationships for analytics.
+
 ## ▶ How to Reproduce
 
 Copy office_database.sql
