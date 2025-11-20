@@ -63,6 +63,7 @@ FROM employees e
 INNER JOIN departments d ON e.dept_id = d.dept_id;
 ```
 ✅ Output:
+![output Preview](Inner_join.png)
 
 ### 🔹 LEFT JOIN — Show every employee, even if they are not assigned to any department, along with the department details if available.
 ```sql
@@ -71,6 +72,7 @@ FROM employees e
 LEFT JOIN departments d ON e.dept_id = d.dept_id;
 ```
 ✅ Output:
+![output Preview](left_join.png)
 ### 🔹 RIGHT JOIN — Show all departments, and if a department has employees, display them too.
 ```sql
 SELECT d.dept_id, d.name AS department, e.emp_id, CONCAT(e.first_name, ' ', e.last_name) AS employee
@@ -78,6 +80,8 @@ FROM employees e
 RIGHT JOIN departments d ON e.dept_id = d.dept_id;
 ```
 ✅ Output:
+![output Preview](Right_join.png)
+
 ### 🔹 FULL OUTER JOIN — emulation (MySQL does not support FULL OUTER JOIN directly)
 ### Show every department and every employee, matching them where possible.
 -- return rows that are in left join UNION rows that are in right join but not both
@@ -91,6 +95,7 @@ FROM departments d
 RIGHT JOIN employees e ON d.dept_id = e.dept_id;
 ```
 ✅ Output:
+![output Preview](full_outer_join.png)
 
 ### 🔹 SELF JOIN — Employees and their Managers
 ```sql
@@ -100,6 +105,7 @@ FROM employees e
 LEFT JOIN employees m ON e.manager_id = m.emp_id;
 ```
 ✅ Output:
+![output Preview](self_join.png)
 
 ### 🔹indexes — Show employees whose salary falls within a specific range
 ```sql
@@ -109,6 +115,18 @@ WHERE salary BETWEEN 80000 AND 120000
 ORDER BY salary DESC;
 ```
 ✅ Output:
+![output Preview](Indexes_salary.png)
+
+### 🔹find employees earning more than their manager
+```sql
+SELECT e.emp_id, CONCAT(e.first_name, ' ', e.last_name) AS employee, e.salary,
+m.emp_id AS manager_id, CONCAT(m.first_name, ' ', m.last_name) AS manager, m.salary AS manager_salary
+FROM employees e
+JOIN employees m ON e.manager_id = m.emp_id
+WHERE e.salary > m.salary;
+```
+✅ Output:
+![output Preview](employee_manager.png)
 
 ## 📊 Project Highlights
 
