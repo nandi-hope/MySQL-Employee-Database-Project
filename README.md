@@ -53,8 +53,89 @@ Includes practical examples of all major joins:
 - **JOIN with condition** – employees earning more than their managers  
 
 ---
+###  Database Creation
 
-## 🧮 Example Queries
+
+```sql
+CREATE DATABASE office;
+USE office;
+```
+
+###  Table Creation
+**departments table**
+```sql
+CREATE TABLE departments (
+dept_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL UNIQUE,
+location VARCHAR(100) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**employees table**
+```sql
+CREATE TABLE employees (
+emp_id INT PRIMARY KEY,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+dept_id INT,
+manager_id INT DEFAULT NULL,
+hire_date DATE NOT NULL,
+salary DECIMAL(10,2) NOT NULL CHECK (salary > 0),
+status ENUM('active','on_leave','terminated') DEFAULT 'active',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT fk_emp_dept FOREIGN KEY (dept_id) REFERENCES departments(dept_id) ON DELETE SET NULL ON UPDATE CASCADE,
+CONSTRAINT fk_emp_manager FOREIGN KEY (manager_id) REFERENCES employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE
+) ;
+```
+
+**indexes**
+```sql
+CREATE INDEX idx_departments_name ON departments(name);
+CREATE INDEX idx_employees_dept ON employees(dept_id);
+CREATE INDEX idx_employees_last_first ON employees(last_name, first_name);
+CREATE INDEX idx_employees_salary ON employees(salary);
+```
+
+**notes:** MySQL does not implement DEFERRABLE constraints; inserts must respect FK ordering.
+
+### Insert values 
+**Insert values into departments**
+```sql
+INSERT INTO departments (dept_id, name, location) VALUES
+(1, 'Engineering', 'Hyderabad'),
+(2, 'Human Resources', 'Bangalore'),
+(3, 'Finance', 'Mumbai'),
+(4, 'Sales', 'Delhi'),
+(5, 'Marketing', 'Pune'),
+(6, 'Customer Success', 'Chennai'),
+(7, 'Legal', 'Hyderabad'),
+(8, 'IT', 'Bangalore'),
+(9, 'Operations', 'Noida'),
+(10, 'Research', 'Hyderabad');
+```
+✅ Output:
+![output Preview](Table_departments.png)
+
+**Insert values into employees** (emp_id chosen explicitly so manager_id can reference earlier rows)
+```sql
+INSERT INTO employees (emp_id, first_name, last_name, email, dept_id, manager_id, hire_date, salary, status) VALUES
+(1, 'Asha', 'Reddy', 'asha.reddy@example.com', 1, NULL, '2018-03-12', 120000.00, 'active'),
+(2, 'Vikram', 'Shah', 'vikram.shah@example.com', 1, 1, '2019-06-01', 95000.00, 'active'),
+(3, 'Sneha', 'Kumar', 'sneha.kumar@example.com', 2, 2, '2020-01-20', 75000.00, 'on_leave'),
+(4, 'Rohan', 'Patel', 'rohan.patel@example.com', 3, 1, '2017-11-05', 88000.00, 'active'),
+(5, 'Priya', 'Mehta', 'priya.mehta@example.com', 4, 4, '2021-04-15', 70000.00, 'active'),
+(6, 'Sameer', 'Singh', 'sameer.singh@example.com', 5, 2, '2016-09-30', 105000.00, 'active'),
+(7, 'Nisha', 'Roy', 'nisha.roy@example.com', 6, 6, '2022-02-10', 65000.00, 'active'),
+(8, 'Amit', 'Bose', 'amit.bose@example.com', 7, 4, '2015-12-01', 115000.00, 'active'),
+(9, 'Leena', 'Iyer', 'leena.iyer@example.com', 8, 8, '2019-08-22', 72000.00, 'terminated'),
+(10, 'Manish', 'Gupta', 'manish.gupta@example.com', 9, 1, '2014-05-17', 130000.00, 'active');
+```
+✅ Output:
+![output Preview](Table_employees.png)
+
+## 🧮 Queries
 
 ### 🔹 INNER JOIN — Employees and their Departments
 ```sql
