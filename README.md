@@ -7,7 +7,7 @@ Small, production-minded MySQL sample demonstrating relational modeling (departm
 This project demonstrates advanced **MySQL concepts** using a realistic employee–department relational database.  
 It focuses on **constraints, joins, and indexes** — key components of efficient relational database design.
 
----
+
 
 ## 📝 Case Study: Why This Project Matters
 
@@ -27,7 +27,7 @@ I designed this project to **demonstrate real-world MySQL skills** that matter t
 - Writing a wide range of joins used in analytics & BI roles  
 - Building a manager–employee hierarchy using self-joins  
 
-This project is built exactly like what companies use in:
+**This project is built exactly like what companies use in:**
 - HR management systems  
 - Employee directory applications  
 - Payroll systems  
@@ -43,6 +43,7 @@ This project is built exactly like what companies use in:
 
 > **This is not just an SQL script — it's a complete database design case study showing practical MySQL expertise that companies MUST have.**
 
+---
 
 ## 🧰 Tools & Technologies
 | Tool | Purpose |
@@ -51,7 +52,7 @@ This project is built exactly like what companies use in:
 | **Workbench / CLI** | Query execution and schema visualization |
 | **GitHub** | Version control & portfolio documentation |
 
----
+
 
 ## 🧩 Database Schema Overview
 
